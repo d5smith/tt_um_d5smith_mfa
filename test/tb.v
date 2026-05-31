@@ -34,6 +34,9 @@ module tb ();
     // netlist has parameters baked in at synthesis time and exposes no
     // overrideable parameters — so we skip the override block entirely.
 `ifdef GL_TEST
+    supply1 VPWR;
+    supply0 VGND;
+
     tt_um_d5smith_mfa dut (
         .VPWR    (VPWR),
         .VGND    (VGND),
