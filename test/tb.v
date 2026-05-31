@@ -27,23 +27,16 @@ module tb ();
     wire [7:0] uio_out;
     wire [7:0] uio_oe;
 
+    // Instantiate the DUT.
+    //
+    // For RTL simulation we override the production divisors with tiny values
+    // so tests finish in seconds. For gate-level simulation, the synthesized
+    // netlist has parameters baked in at synthesis time and exposes no
+    // overrideable parameters — so we skip the override block entirely.
 `ifdef GL_TEST
-    wire VPWR = 1'b1;
-    wire VGND = 1'b0;
-`endif
-
-    // Instantiate the DUT with small divisors for fast testing
-    tt_um_d5smith_mfa #(
-        .SAMPLE_DIV(4),     // Sample tick every 4 clocks
-        .TEMPO_SLOW(100),   // Composition tick every 100 clocks (~slow)
-        .TEMPO_MED(50),     // ~medium
-        .TEMPO_FAST(25),    // ~fast
-        .TEMPO_VFAST(12)    // ~very fast
-    ) dut (
-`ifdef GL_TEST
-        .VPWR(VPWR),
-        .VGND(VGND),
-`endif
+    tt_um_d5smith_mfa dut (
+        .VPWR    (VPWR),
+        .VGND    (VGND),
         .ui_in   (ui_in),
         .uo_out  (uo_out),
         .uio_in  (uio_in),
@@ -53,5 +46,23 @@ module tb ();
         .clk     (clk),
         .rst_n   (rst_n)
     );
+`else
+    tt_um_d5smith_mfa #(
+        .SAMPLE_DIV(4),     // Sample tick every 4 clocks
+        .TEMPO_SLOW(100),   // Composition tick every 100 clocks (~slow)
+        .TEMPO_MED(50),     // ~medium
+        .TEMPO_FAST(25),    // ~fast
+        .TEMPO_VFAST(12)    // ~very fast
+    ) dut (
+        .ui_in   (ui_in),
+        .uo_out  (uo_out),
+        .uio_in  (uio_in),
+        .uio_out (uio_out),
+        .uio_oe  (uio_oe),
+        .ena     (ena),
+        .clk     (clk),
+        .rst_n   (rst_n)
+    );
+`endif
 
 endmodule
