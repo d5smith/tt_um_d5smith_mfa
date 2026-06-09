@@ -2,7 +2,7 @@
  * tt_um_d5smith_mfa - Generative Ambient Music ASIC
  * Top-level Tiny Tapeout wrapper
  *
- * Target shuttle: TTGF26a (GlobalFoundries)
+ * Target shuttle: TTGF26b (GlobalFoundries)
  *
  * Pipeline: clock_dividers → composition_engine → scale_quantizers → sound_engine
  *
