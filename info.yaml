@@ -1,6 +1,6 @@
 # Tiny Tapeout project information
 project:
-  title:        "Generative Ambient Music"
+  title:        "Music for ASICs"
   author:       "d5smith"
   discord:      ""
   description:  "Autonomous generative ambient music chip using LFSR composition, scale quantization, and DDS synthesis"
