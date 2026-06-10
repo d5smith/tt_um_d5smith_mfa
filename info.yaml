@@ -41,7 +41,7 @@ pinout:
   uo[1]: "DAC bit 1"
   uo[2]: "DAC bit 2"
   uo[3]: "DAC bit 3 (MSB)"
-  uo[4]: "Debug: composition tick"
+  uo[4]: "Debug: sample tick"
   uo[5]: "Debug: bass active"
   uo[6]: "Debug: melody active"
   uo[7]: "Debug: LFSR-12 MSB"
